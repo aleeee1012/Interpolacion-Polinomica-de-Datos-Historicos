@@ -15,7 +15,22 @@ Usaremos `N+1` puntos (días) de los datos de una acción para construir un poli
 
 **Este proyecto NO busca predecir el futuro**, sino analizar críticamente las propiedades matemáticas y las limitaciones de la interpolación polinómica cuando se aplica a datos con variaciones.
 
-## 3. Instalación y Dependencias
+## 3. Estructura del Proyecto
+
+proyecto_MN/
+│
+├── README.md              ---> Descripción del Proyecto
+├── requirements.txt       ---> Archivo para instalar todo lo necesario
+├── main.py                ---> Orquestador 
+│
+├── graficos/              ---> Se guardarán todos los graficos creados para posterior visualización
+│
+└── src/                   ---> Fuentes (Sources)
+    ├── __init__.py  
+    └── interpolacion.py   ---> Implementación de Lagrange
+
+
+## 4. Instalación y Dependencias
 
 Para ejecutar este proyecto, necesitas Python 3.x y las siguientes bibliotecas. Puedes instalarlas usando `pip`:
 
