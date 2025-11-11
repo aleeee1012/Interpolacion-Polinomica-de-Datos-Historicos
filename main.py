@@ -15,8 +15,8 @@ CARPETA_GRAFICOS = 'graficos'
 print(f"Iniciando etapa de prueba")
 # Analizar los primeros 270 días de datos
 N_DIAS_ANALISIS = 270
-# 11 puntos para crear polinomio de grado 10
-N_PUNTOS_INTERPOLACION = 11
+# 5 puntos para crear polinomio de grado 4
+N_PUNTOS_INTERPOLACION = 5
 
 # Asegurarse de que la carpeta 'graficos' exista, crearla de lo contrario
 
