@@ -81,7 +81,7 @@ plt.plot(dias[:N_DIAS_ANALISIS], precios[:N_DIAS_ANALISIS], 'k.', label='Datos R
 plt.plot(x_interp, y_interp, 'ro', markersize=10, label=f'Puntos de Interpolación (N={N_PUNTOS_INTERPOLACION})')
 
 plt.plot(dias_polinomio, precios_polinomio_lagrange, 'b-', label=f'Polinomio de Lagrange (Grado {N_PUNTOS_INTERPOLACION - 1})')
-plt.plot(dias_polinomio, precios_polinomio_newton, 'g--', linewidth=2, label=f'Polinomio de Newton (Grado {N_PUNTOS_INTERPOLACION - 1})')
+plt.plot(dias_polinomio, precios_polinomio_newton, color='orange', linestyle='--', linewidth=2, label=f'Polinomio de Newton (Grado {N_PUNTOS_INTERPOLACION - 1})')
 
 plt.title(f'Comparación Lagrange vs Newton en Precios de {ACTIVO}', fontsize=16)
 plt.xlabel('Días', fontsize=12)
