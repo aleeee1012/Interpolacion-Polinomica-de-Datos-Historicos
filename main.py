@@ -2,7 +2,7 @@ import yfinance as yf # Para descargar datos reales
 import numpy as np
 import matplotlib.pyplot as plt
 import os
-from src.interpolacion import polinomio_lagrange
+from Proyecto_MN.src.interpolacion_lagrange import polinomio_lagrange
 
 # ----- Configuración ------
 ACTIVO = 'DIS'
@@ -75,7 +75,7 @@ plt.figure(figsize=(14, 8))
 plt.plot(dias[:N_DIAS_ANALISIS], precios[:N_DIAS_ANALISIS], 'k.', label='Datos Reales (Precio Cierre)', alpha=0.6)
 plt.plot(x_interp, y_interp, 'ro', markersize=10, label=f'Puntos de Interpolación (N={N_PUNTOS_INTERPOLACION})')
 plt.plot(dias_polinomio, precios_polinomio, 'b-', label=f'Polinomio de Lagrange (Grado {N_PUNTOS_INTERPOLACION - 1})')
-plt.title(f'Interpolación de Lagrange en Precios de {ACTIVO} (Fenómeno de Runge)', fontsize=16)
+plt.title(f'Interpolación de Lagrange en Precios de {ACTIVO}', fontsize=16)
 plt.xlabel('Días', fontsize=12)
 plt.ylabel('Precio de Cierre (USD)', fontsize=12)
 plt.legend(fontsize=10)
