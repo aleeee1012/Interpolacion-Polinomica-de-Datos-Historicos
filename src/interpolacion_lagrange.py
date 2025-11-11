@@ -21,24 +21,18 @@ def polinomio_lagrange(x_puntos, y_puntos, x_eval):
     # N es el número de puntos que estamos usando
     N = len(x_puntos)
     
-    # P_x es el resultado final (el Yp). Lo iniciamos en 0.0
+    # P_x es el resultado final
     P_x = 0.0
     
-    # Bucle: Recorre cada punto (i) para calcular y_i * L_i(x)
+    # Recorre cada punto (i) para calcular y_i * L_i(x)
     for i in range(N):
-        
-        # 'L_i' es el polinomio base de Lagrange. Lo iniciamos en 1.0
-        L_i = 1.0
-        
+        L_i = 1.0 # Polinomio base de Lagrange
         # Bucle: Calcula el producto (Π) para el L_i(x) actual
         for j in range(N):
-            
-            # La fórmula dice que j debe ser diferente de i
-            if i != j:
+            if i != j: # Fórmula: j debe ser diferente de i
                 termino = (x_eval - x_puntos[j]) / (x_puntos[i] - x_puntos[j])
                 L_i = L_i * termino
         
-        # Sumamos el término y_i * L_i(x) al total
         P_x = P_x + y_puntos[i] * L_i
-        
+
     return P_x
