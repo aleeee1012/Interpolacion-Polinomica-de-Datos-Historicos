@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 from Proyecto_MN.src.interpolacion_lagrange import polinomio_lagrange
+from src.interpolacion_newton import polinomio_newton
 
 # ----- Configuración ------
 ACTIVO = 'DIS'
@@ -59,23 +60,30 @@ y_interp = precios[indices_puntos]
 
 # 2.- Generar curva del polinomio creando un eje X fino para dibujar la curva
 dias_polinomio = np.arange(0, N_DIAS_ANALISIS)
-precios_polinomio = []
+precios_polinomio_lagrange = []
+precios_polinomio_newton = []
 
 # Evaluar polinomio en cada uno de esos dias
 for dia in dias_polinomio:
-    valor_y = polinomio_lagrange(x_interp, y_interp, dia)
-    precios_polinomio.append(valor_y)
+    valor_y_lagrange = polinomio_lagrange(x_interp, y_interp, dia)
+    valor_y_newton = polinomio_newton(x_interp, y_interp, dia)
+    
+    precios_polinomio_lagrange.append(valor_y_lagrange)
+    precios_polinomio_newton.append(valor_y_newton)
 
-print("Datos para el gráfico generados")
+print("Datos para los gráficos generados")
 
 # --- Análisis de resultados (Graficar) ---
-print(f"Generando gráfico de análisis...")
+print(f"Generando gráficos de análisis...")
 
 plt.figure(figsize=(14, 8))
 plt.plot(dias[:N_DIAS_ANALISIS], precios[:N_DIAS_ANALISIS], 'k.', label='Datos Reales (Precio Cierre)', alpha=0.6)
 plt.plot(x_interp, y_interp, 'ro', markersize=10, label=f'Puntos de Interpolación (N={N_PUNTOS_INTERPOLACION})')
-plt.plot(dias_polinomio, precios_polinomio, 'b-', label=f'Polinomio de Lagrange (Grado {N_PUNTOS_INTERPOLACION - 1})')
-plt.title(f'Interpolación de Lagrange en Precios de {ACTIVO}', fontsize=16)
+
+plt.plot(dias_polinomio, precios_polinomio_lagrange, 'b-', label=f'Polinomio de Lagrange (Grado {N_PUNTOS_INTERPOLACION - 1})')
+plt.plot(dias_polinomio, precios_polinomio_newton, 'g--', linewidth=2, label=f'Polinomio de Newton (Grado {N_PUNTOS_INTERPOLACION - 1})')
+
+plt.title(f'Comparación Lagrange vs Newton en Precios de {ACTIVO}', fontsize=16)
 plt.xlabel('Días', fontsize=12)
 plt.ylabel('Precio de Cierre (USD)', fontsize=12)
 plt.legend(fontsize=10)
@@ -86,7 +94,7 @@ max_visible = np.max(precios[:N_DIAS_ANALISIS]) * 1.1
 plt.ylim(min_visible, max_visible)
 
 # Guardar el gráfico
-ruta_salida = os.path.join(CARPETA_GRAFICOS, f'analisis_lagrange_{ACTIVO}_{N_DIAS_ANALISIS}dias.png')
+ruta_salida = os.path.join(CARPETA_GRAFICOS, f'analisis_comparacion_L_vs_N_{ACTIVO}.png')
 plt.savefig(ruta_salida)
 
 print(f"¡Análisis completo! Gráfico guardado en: {ruta_salida}")
