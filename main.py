@@ -2,7 +2,7 @@ import yfinance as yf # Para descargar datos reales
 import numpy as np
 import matplotlib.pyplot as plt
 import os
-from Proyecto_MN.src.interpolacion_lagrange import polinomio_lagrange
+from src.interpolacion_lagrange import polinomio_lagrange
 from src.interpolacion_newton import polinomio_newton
 
 # ----- Configuración ------
